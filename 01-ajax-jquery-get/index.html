@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous">
+    <title>AJAX JQUERY GET</title>
+</head>
+
+<body>
+    <!-- Avec AJAX permet d'envoter des requettes HTTP il y a une requete aller et une retour! -->
+    <div class="container">
+
+        <h1 class="display-4 texxt-center">AJAX JQUERY GET</h1>
+
+        <div id="demo">AJAX GET</div>
+        <button type="button" id="action" class="btn btn-primary">Charger le fichier TXT</button>
+
+    </div>
+    
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+
+    <script>
+
+        /* 
+        AJAX (Asynchronique Javascript and XML) est une association de langage permettant d'envoyer des requetes HTTP
+        Il y a toujours 2 requetes : Aller / Retour
+        C'est grace a l'objet JS XMLHttpRequeqt() qu'il est possible d'envoyer des requetes HTTP
+        */
+
+    $(document).ready(function(){
+        $('#action').click(function(event){
+            // alert('Tout est OK !');
+
+            //AJAX () est une fonction en JQUERY  permettant d'envoyer des requetes HTTP avec la methode 'get'
+            $.ajax({
+               url: "ajax-info.txt", // URL de destination
+               dataType : "text", // Type de donnée
+               success : function(data){
+                //data est la reponse de ma requete (requete retour (success))
+                /* 
+                En cas de succes de requetes, la réponse de la requete est stockée dans 'data
+                La methode "ajax()" se charge de tout faire, la réponse de la requete est parsé au format JSON, sinon on ne pourrais pas vévivuler des données en HTTP
+                */
+                   $('#demo').html(data);
+                   /* 
+                   On séléctionne la div id " demo" dans la quelle on accroche le resultat de la requete AJAX contenu dans data 
+                   */
+               } 
+            });
+
+        });
+    });
+    </script>
+
+
+</body>
+
+</html>
