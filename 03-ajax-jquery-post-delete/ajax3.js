@@ -12,6 +12,7 @@ $(document).ready(function(){
         console.log(id);
 
         var parameters = 'id='+id;
+        //toujours utiliser l'id!
         console.log(parameters);
 
         $.post("ajax3.php",parameters,function(data){

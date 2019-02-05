@@ -2,33 +2,30 @@
     require_once("init.php");
     $table = array();
 
-    
-    $resultat = $bdd->exec("SELECT * FROM employes WHERE id_employes = '$_POST[id]'");
+    //----------Requete Aller
+    $resultat = $bdd->query("SELECT * FROM employes WHERE id_employes = '$_POST[id]'");
+    // $resultat = $bdd->query("SELECT * FROM employes WHERE id_employes = 739");
 
-    $table['resultat'] .= '<table>';    
+//---------------- Afficher toutes  les colonnes de la base de données
+    $table['resultat'] = '<table class="table table-bordered"><tr>';
     
-    $table['resultat'] .= '<tr>';
-    $table['resultat'] .= '<td> Id employes</td>';
-    $table['resultat'] .= '<td> Nom</td>';
-    $table['resultat'] .= '<td> Prenom</td>';
-    $table['resultat'] .= '<td> Date</td>';
-    $table['resultat'] .= '<td> Salaire</td>';
+    for($i = 0; $i < $resultat-> columnCount(); $i++ ){
+        $colone = $resultat ->getColumnMeta($i);
+        $table['resultat'] .="<th>$colone[name]</th>";
+    }
     $table['resultat'] .= '</tr>';
 
-
-    $table['resultat'] .= '<tr>';
-    $table['resultat'] .= '<td id="id_employes"></td>';
-    $table['resultat'] .= '<td id="nom"></td>';
-    $table['resultat'] .= '<td id="prenom"></td>';
-    $table['resultat'] .= '<td id="date"></td>';
-    $table['resultat'] .= '<td id="salaire"></td>';
-    $table['resultat'] .= '</tr>';
+    while($employe = $resultat->fetch(PDO::FETCH_ASSOC))
+    {
+        $table['resultat'] .= '<tr>';   
+        foreach($employe as $value)
+        {
+            $table['resultat'] .= "<td>$value</td>";               
+        }
+        $table['resultat'] .= '</tr>';   
+        
+    }
     $table['resultat'] .= '</table>';
-
-
-
-
-
 
     echo json_encode($table);
 

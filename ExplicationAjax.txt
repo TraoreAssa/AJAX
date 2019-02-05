@@ -1,6 +1,7 @@
             
-            
-            REQUETE AJAX ALLER ----------> + parametres (id) -------------------------> FICHIER 
+         
+         
+          REQUETE AJAX ALLER ------------> + parametres (id) -------------------------> FICHIER 
                                                                                           PHP
                                                                                     parametres transmit
                                                                                      a la requete PHP
@@ -9,3 +10,36 @@
                                                                                             |
                                                                                             |
         AFFICHAGE <------------------------ SELECTION EN BDD <--------------------------REQUETE RETOUR
+
+
+
+
+
+        Dossier 01 -->  Changement de texte au clique sur le bouton
+
+        Dossier 02 -->  Insert dans la base de donnée le nom d'une nouvelle arrivée
+
+        Dossier 03 -->  Supprimer une personne de la base de donnée
+
+        Dossier 04 -->  Séléctionner et afficher les donnée d'un employé dans un tableau
+
+        Dossier 05 -->  Insert tout les champs dans la base de donnée pour une nouvelle arrivée 
+                        puis afficher tout les emplyés avec la nouvelle entrée
+
+        Dossier 06 --> 
+
+
+                                                Etapes a faire :
+            1- Connexion, BDD dans init.php 
+                  <?php $bdd = new PDO('mysql:host=localhost;dbname=entreprise', 'root', '');
+
+            2- Réaliser le selecteur en php de tout les employés dans index.php
+
+            3- Dans le fichier ajax4.php, réaliser la requete php permettant de selectionner un employé dans la BDD
+
+            4- Réaliser le traitement permettant d'afficher les données d'un employé dans le fichier ajax4.php
+
+            5- Encoder en json (sur le ajaxX.php)  
+                  echo json_encode($X);
+
+            6- Réaliser le traitement JS permettent d'envoyer les requetes AJAX dans le fichier ajax4.js

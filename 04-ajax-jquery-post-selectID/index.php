@@ -8,57 +8,51 @@
         crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="ajax4.js"></script>
-    <title>AJAX JQUERY </title>
+    <title>AJAX SELECT JQUERY </title>
 </head>
 <body>
-<div class="container">
+    <div class="container">
             
-            <h1 class="display-4 text-center">AJAX JQUERY</h1> <hr>
+        <h1 class="display-4 text-center">AJAX SELECT JQUERY</h1> <hr>
     
-            <!-- Exo : réaliser en PHP un sélécteur permettant d'afficher tout les noms des employés -->
-    
-            <form method="" action="" class="col-md-6 offset-md-3">
+            <!-- Exo : réaliser en PHP un sélécteur permettant d'afficher tout les noms des employés 
             
-                <?php   
-                    require_once('init.php');
+            1- Connexion, BDD dans init.php
+
+            2- Réaliser le selecteur en php de tout les employés dans index.php
+
+            3- Dans le fichier ajax4.php, réaliser la requete php permettant de selectionner un employé dans la BDD
+            4- Réaliser le traitement permettant d'afficher les données d'un employé dans le fichier ajax4.php
+            5- Encoder en json
+
+            6- Réaliser le traitement JS permettent d'envoyer les requetes AJAX dans le fichier ajax4.js
+            -->
     
-                    $resultat = $bdd->query('SELECT * FROM employes');
-                    var_dump($resultat);
-                ?>
-                <div id="employes">
-                        <select class="form-control" id="employes" name = "employes">
-                            <?php while($employe = $resultat->fetch(PDO::FETCH_ASSOC)):
+        <form method="" action="" class="col-md-6 offset-md-3">
+            
+            <?php   
+                require_once('init.php');
+    
+                $resultat = $bdd->query('SELECT * FROM employes');
+                var_dump($resultat);
+            ?>
+            <div id="employes">
+                <select class="form-control" id="personne" name = "personne">
+                    <?php while($employe = $resultat->fetch(PDO::FETCH_ASSOC)):
                             ?>
                                 
-                            <option value="<?= $employe['id_employes'] ?>"> <?= $employe['nom'] ?> 
-                            </option>
+                        <option value="<?= $employe['id_employes'] ?>"> <?= $employe['nom'] ?> 
+                        </option>
                             
-                            <?php endwhile;?>
+                    <?php endwhile;?>
     
-                        </select>
-                        <input type="submit" id="afficher" value="Afficher">
-                </div>
-            </form>
+                </select>
+            </div>
+                <input type="submit" id="afficher" value="Afficher">
+        </form> <hr>
 
-            <table>
-                <tr>
-                    <td>Id employés</td>
-                    <td>Nom</td>
-                    <td>Prénom</td>
-                    <td>Date d'embauche</td>
-                </tr>
-
-                <tr>
-                    <td id="id_employes"></td>
-                    <td id="nom"></td>
-                    <td id="prenom"></td>
-                    <td id="date"></td>
-                    <td id="salaire"></td>
-            
-                </tr>
-
-            </table>
-        </div>
+        <div id="resultat"></div>
+    </div>
     
 </body>
 </html>
