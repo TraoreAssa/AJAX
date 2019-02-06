@@ -23,12 +23,9 @@
             - Service 
             - date embauche
             - Salaire
-
-        
-            2- Réaliser le selecteur en php de tout les employés dans index.php
-
-            3- Dans le fichier ajax5.php, réaliser la requete php permettant de selectionner un employé dans la BDD
-            4- Réaliser le traitement permettant d'afficher les données d'un employé dans le fichier ajax4.php
+            
+            3- Dans le fichier ajaxX.php, réaliser la requete php permettant de selectionner un employé dans la BDD
+            4- Réaliser le traitement permettant d'afficher les données d'un employé dans le fichier ajaxX.php
             5- Encoder en json
 
             6- Réaliser le traitement JS permettent d'envoyer les requetes AJAX dans le fichier ajax4.js
@@ -39,19 +36,22 @@
 
         <h2 class="display-6 text-center">Filtre :</h2>
 
-        
+        <div id="resultat"></div>
+
         <form methode = "post" id="formulaire" class = "col-md-7 offset-md-3">
+
         <?php   
             require_once('init.php');
     
-            $resultat = $bdd->query('SELECT * FROM employes');
-            var_dump($resultat);
+            $resultat1 = $bdd->query('SELECT DISTINCT (service) FROM employes');
+            
         ?>
-            <div class="form-group">
+
+        <div class="form-group">
 
             <!-- ------------------Sexe----------------------- -->
+                <label for="sexe">Sexe</label>
                 <select class="form-control " name="sexe" id="sexe">
-                    <label for="sexe">Sexe</label>
                     <option value="m">Homme</option>
                     <option value="f">Femme</option>
                 </select>
@@ -59,11 +59,11 @@
                 <br>
 
             <!-- ------------------Service----------------------- -->
+                <label for="service">Service</label>       
                 <select class="form-control" id="services" name = "services">
-                    <?php while($servi = $resultat->fetch(PDO::FETCH_ASSOC)):
+                    <?php while($service = $resultat1->fetch(PDO::FETCH_ASSOC)):
                             ?>
-                        <label for="service">Service</label>       
-                        <option value="<?= $servi['service'] ?>"> <?= $servi['service'] ?> 
+                        <option value="<?= $service['service'] ?>"> <?= $service['service'] ?> 
                         </option>
                             
                     <?php endwhile;?>
@@ -73,22 +73,26 @@
                 <br>
             <!-- ------------------ Date embauche----------------------- -->
 
-                <label for="">Date</label>
-                compris entre le <input type="date"> et <input type="date">
+                <label for="date_embauche">Date</label>
+                comprise entre le <input type="date" id="date_embauche" name="date_embauche" class="col-md-4"> 
+                <label for="date_embauche1">et</label> <input type="date" id="date_embauche1" name="date_embauche1" class="col-md-4">
 
+                <br>
                 <br>
                 
             <!-- ------------------Salaire----------------------- -->
 
-                <label for="salaire">Salaire</label>compris entre <input type="text"> et <input type="text">
+                <label for="salaire">Salaire</label> compris entre <input type="number" id="salaire" name="salaire" class="col-md-4"> 
+                <label for="salaire1">et</label> <input type="number" id="salaire1" name="salaire1" class="col-md-4">
                 
                 <br>
-                <input type="submit" id="afficher" value="Afficher">
+                <br>
+                <input type="submit" id="filtrer" value="Filter" class="col-md-12  btn btn-dark">
 
             </div> 
         </form>
 
-        <div id="resultat"></div>
+       
 
     </div>
 

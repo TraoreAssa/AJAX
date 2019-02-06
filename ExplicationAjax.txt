@@ -26,7 +26,7 @@
         Dossier 05 -->  Insert tout les champs dans la base de donnée pour une nouvelle arrivée 
                         puis afficher tout les emplyés avec la nouvelle entrée
 
-        Dossier 06 --> 
+        Dossier 06 --> Filtrer
 
 
                                                 Etapes a faire :
